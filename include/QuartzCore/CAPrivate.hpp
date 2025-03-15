@@ -110,6 +110,8 @@ namespace CA {
             _CA_PRIVATE_DEF_SEL(setAllowsNextDrawableTimeout_, "setAllowsNextDrawableTimeout:");
             _CA_PRIVATE_DEF_SEL(setNeedsDisplayOnBoundsChange_, "setNeedsDisplayOnBoundsChange:");
             _CA_PRIVATE_DEF_SEL(setAutoresizingMask_, "setAutoresizingMask:");
+            _CA_PRIVATE_DEF_SEL(setOpaque_, "setOpaque:");
+            _CA_PRIVATE_DEF_SEL(setMaximumDrawableCount_, "setMaximumDrawableCount:");
         }  // namespace Selector
     }      // namespace Private
 }  // namespace CA

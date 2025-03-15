@@ -29,6 +29,7 @@
 #include "CADefines.hpp"
 #include "CAMetalDrawable.hpp"
 #include "CAPrivate.hpp"
+#include "Foundation/NSTypes.hpp"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,6 +57,8 @@ namespace CA {
         void setAllowsNextDrawableTimeout(bool b);
         void setNeedsDisplayOnBoundsChange(bool b);
         void setAutoresizingMask(NS::UInteger mask);
+        void setOpaque(bool b);
+        void setMaximumDrawableCount(NS::UInteger count);
     };
 }  // namespace CA
 
@@ -141,4 +144,16 @@ _CA_INLINE void CA::MetalLayer::setNeedsDisplayOnBoundsChange(bool b) {
 
 _CA_INLINE void CA::MetalLayer::setAutoresizingMask(NS::UInteger mask) {
     return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setAutoresizingMask_), mask);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+_CA_INLINE void CA::MetalLayer::setOpaque(bool b) {
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setOpaque_), b);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+_CA_INLINE void CA::MetalLayer::setMaximumDrawableCount(NS::UInteger count) {
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setMaximumDrawableCount_), count);
 }
