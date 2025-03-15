@@ -29,10 +29,9 @@
 
 namespace NS {
 
-_NS_ENUM(Integer, ComparisonResult){OrderedAscending = -1L, OrderedSame,
-                                    OrderedDescending};
+    _NS_ENUM(Integer, ComparisonResult){OrderedAscending = -1L, OrderedSame, OrderedDescending};
 
-const Integer NotFound = IntegerMax;
+    const Integer NotFound = IntegerMax;
 
 }  // namespace NS
 

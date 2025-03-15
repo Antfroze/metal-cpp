@@ -31,22 +31,20 @@
 
 namespace NS {
 
-using TimeInterval = double;
+    using TimeInterval = double;
 
-class Date : public Copying<Date> {
- public:
-  static Date* dateWithTimeIntervalSinceNow(TimeInterval secs);
-};
+    class Date : public Copying<Date> {
+       public:
+        static Date* dateWithTimeIntervalSinceNow(TimeInterval secs);
+    };
 
 }  // namespace NS
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-_NS_INLINE NS::Date* NS::Date::dateWithTimeIntervalSinceNow(
-  NS::TimeInterval secs) {
-  return NS::Object::sendMessage<NS::Date*>(
-    _NS_PRIVATE_CLS(NSDate), _NS_PRIVATE_SEL(dateWithTimeIntervalSinceNow_),
-    secs);
+_NS_INLINE NS::Date* NS::Date::dateWithTimeIntervalSinceNow(NS::TimeInterval secs) {
+    return NS::Object::sendMessage<NS::Date*>(_NS_PRIVATE_CLS(NSDate),
+                                              _NS_PRIVATE_SEL(dateWithTimeIntervalSinceNow_), secs);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

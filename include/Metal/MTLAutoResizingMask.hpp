@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 //
-// Metal/MTLVersion.hpp
+// Metal/MTLPixelFormat.hpp
 //
 // Copyright 2020-2023 Apple Inc.
 //
@@ -20,14 +20,11 @@
 
 #pragma once
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+#include <Foundation/Foundation.hpp>
+#include "MTLDefines.hpp"
 
-#define METALCPP_VERSION_MAJOR 306
-#define METALCPP_VERSION_MINOR 5
-#define METALCPP_VERSION_PATCH 16
-
-#define METALCPP_SUPPORTS_VERSION(major, minor, patch)                      \
-    ((major < METALCPP_VERSION_MAJOR) ||                                    \
-     (major == METALCPP_VERSION_MAJOR && minor < METALCPP_VERSION_MINOR) || \
-     (major == METALCPP_VERSION_MAJOR && minor == METALCPP_VERSION_MINOR && \
-      patch <= METALCPP_VERSION_PATCH))
+namespace MTL {
+    _MTL_ENUM(NS::UInteger, AutoResizingMask){NotSizable = 0, MinXMargin = 1, WidthSizable = 2,
+                                              MaxXMargin = 4, MinYMargin = 8, HeightSizable = 16,
+                                              MaxYMargin = 32};
+}

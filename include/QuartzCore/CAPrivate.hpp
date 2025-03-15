@@ -22,8 +22,6 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#include "CADefines.hpp"
-
 #include <objc/runtime.h>
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -44,26 +42,22 @@
 #define _CA_PRIVATE_IMPORT __attribute__((weak_import))
 
 #ifdef __OBJC__
-#define _CA_PRIVATE_OBJC_LOOKUP_CLASS(symbol) \
-  ((__bridge void*)objc_lookUpClass(#symbol))
-#define _CA_PRIVATE_OBJC_GET_PROTOCOL(symbol) \
-  ((__bridge void*)objc_getProtocol(#symbol))
+#define _CA_PRIVATE_OBJC_LOOKUP_CLASS(symbol) ((__bridge void*)objc_lookUpClass(#symbol))
+#define _CA_PRIVATE_OBJC_GET_PROTOCOL(symbol) ((__bridge void*)objc_getProtocol(#symbol))
 #else
 #define _CA_PRIVATE_OBJC_LOOKUP_CLASS(symbol) objc_lookUpClass(#symbol)
 #define _CA_PRIVATE_OBJC_GET_PROTOCOL(symbol) objc_getProtocol(#symbol)
 #endif  // __OBJC__
 
-#define _CA_PRIVATE_DEF_CLS(symbol)          \
-  void* s_k##symbol _CA_PRIVATE_VISIBILITY = \
-    _CA_PRIVATE_OBJC_LOOKUP_CLASS(symbol)
-#define _CA_PRIVATE_DEF_PRO(symbol)          \
-  void* s_k##symbol _CA_PRIVATE_VISIBILITY = \
-    _CA_PRIVATE_OBJC_GET_PROTOCOL(symbol)
+#define _CA_PRIVATE_DEF_CLS(symbol) \
+    void* s_k##symbol _CA_PRIVATE_VISIBILITY = _CA_PRIVATE_OBJC_LOOKUP_CLASS(symbol)
+#define _CA_PRIVATE_DEF_PRO(symbol) \
+    void* s_k##symbol _CA_PRIVATE_VISIBILITY = _CA_PRIVATE_OBJC_GET_PROTOCOL(symbol)
 #define _CA_PRIVATE_DEF_SEL(accessor, symbol) \
-  SEL s_k##accessor _CA_PRIVATE_VISIBILITY = sel_registerName(symbol)
-#define _CA_PRIVATE_DEF_STR(type, symbol)              \
-  _CA_EXTERN type const CA##symbol _CA_PRIVATE_IMPORT; \
-  type const CA::symbol = (nullptr != &CA##symbol) ? CA##symbol : nullptr
+    SEL s_k##accessor _CA_PRIVATE_VISIBILITY = sel_registerName(symbol)
+#define _CA_PRIVATE_DEF_STR(type, symbol)                \
+    _CA_EXTERN type const CA##symbol _CA_PRIVATE_IMPORT; \
+    type const CA::symbol = (nullptr != &CA##symbol) ? CA##symbol : nullptr
 
 #else
 
@@ -77,45 +71,47 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 namespace CA {
-namespace Private {
-namespace Class {
-_CA_PRIVATE_DEF_CLS(CAMetalLayer);
-}  // namespace Class
-}  // namespace Private
+    namespace Private {
+        namespace Class {
+            _CA_PRIVATE_DEF_CLS(CAMetalLayer);
+        }  // namespace Class
+    }      // namespace Private
 }  // namespace CA
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 namespace CA {
-namespace Private {
-namespace Protocol {
+    namespace Private {
+        namespace Protocol {
 
-_CA_PRIVATE_DEF_PRO(CAMetalDrawable);
+            _CA_PRIVATE_DEF_PRO(CAMetalDrawable);
 
-}  // namespace Protocol
-}  // namespace Private
+        }  // namespace Protocol
+    }      // namespace Private
 }  // namespace CA
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 namespace CA {
-namespace Private {
-namespace Selector {
-_CA_PRIVATE_DEF_SEL(device, "device");
-_CA_PRIVATE_DEF_SEL(drawableSize, "drawableSize");
-_CA_PRIVATE_DEF_SEL(framebufferOnly, "framebufferOnly");
-_CA_PRIVATE_DEF_SEL(layer, "layer");
-_CA_PRIVATE_DEF_SEL(nextDrawable, "nextDrawable");
-_CA_PRIVATE_DEF_SEL(pixelFormat, "pixelFormat");
-_CA_PRIVATE_DEF_SEL(setDevice_, "setDevice:");
-_CA_PRIVATE_DEF_SEL(setDrawableSize_, "setDrawableSize:");
-_CA_PRIVATE_DEF_SEL(setFramebufferOnly_, "setFramebufferOnly:");
-_CA_PRIVATE_DEF_SEL(setPixelFormat_, "setPixelFormat:");
-_CA_PRIVATE_DEF_SEL(texture, "texture");
-_CA_PRIVATE_DEF_SEL(setPresentsWithTransaction, "setPresentsWithTransaction");
-_CA_PRIVATE_DEF_SEL(setPresentsWithTransaction_, "setPresentsWithTransaction:");
-}  // namespace Selector
-}  // namespace Private
+    namespace Private {
+        namespace Selector {
+            _CA_PRIVATE_DEF_SEL(device, "device");
+            _CA_PRIVATE_DEF_SEL(drawableSize, "drawableSize");
+            _CA_PRIVATE_DEF_SEL(framebufferOnly, "framebufferOnly");
+            _CA_PRIVATE_DEF_SEL(layer, "layer");
+            _CA_PRIVATE_DEF_SEL(nextDrawable, "nextDrawable");
+            _CA_PRIVATE_DEF_SEL(pixelFormat, "pixelFormat");
+            _CA_PRIVATE_DEF_SEL(setDevice_, "setDevice:");
+            _CA_PRIVATE_DEF_SEL(setDrawableSize_, "setDrawableSize:");
+            _CA_PRIVATE_DEF_SEL(setFramebufferOnly_, "setFramebufferOnly:");
+            _CA_PRIVATE_DEF_SEL(setPixelFormat_, "setPixelFormat:");
+            _CA_PRIVATE_DEF_SEL(texture, "texture");
+            _CA_PRIVATE_DEF_SEL(setPresentsWithTransaction_, "setPresentsWithTransaction:");
+            _CA_PRIVATE_DEF_SEL(setAllowsNextDrawableTimeout_, "setAllowsNextDrawableTimeout:");
+            _CA_PRIVATE_DEF_SEL(setNeedsDisplayOnBoundsChange_, "setNeedsDisplayOnBoundsChange:");
+            _CA_PRIVATE_DEF_SEL(setAutoresizingMask_, "setAutoresizingMask:");
+        }  // namespace Selector
+    }      // namespace Private
 }  // namespace CA
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

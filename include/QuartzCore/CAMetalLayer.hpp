@@ -24,7 +24,6 @@
 
 #include <CoreGraphics/CGGeometry.h>
 #include "../Metal/MTLPixelFormat.hpp"
-#include "../Metal/MTLTexture.hpp"
 
 #include "CADefines.hpp"
 #include "CAMetalDrawable.hpp"
@@ -34,96 +33,111 @@
 
 namespace CA {
 
-class MetalLayer : public NS::Referencing<MetalLayer> {
- public:
-  static class MetalLayer* layer();
+    class MetalLayer : public NS::Referencing<MetalLayer> {
+       public:
+        static class MetalLayer* layer();
 
-  MTL::Device* device() const;
-  void setDevice(MTL::Device* device);
+        MTL::Device* device() const;
+        void setDevice(MTL::Device* device);
 
-  MTL::PixelFormat pixelFormat() const;
-  void setPixelFormat(MTL::PixelFormat pixelFormat);
+        MTL::PixelFormat pixelFormat() const;
+        void setPixelFormat(MTL::PixelFormat pixelFormat);
 
-  bool framebufferOnly() const;
-  void setFramebufferOnly(bool framebufferOnly);
+        bool framebufferOnly() const;
+        void setFramebufferOnly(bool framebufferOnly);
 
-  CGSize drawableSize() const;
-  void setDrawableSize(CGSize drawableSize);
+        CGSize drawableSize() const;
+        void setDrawableSize(CGSize drawableSize);
 
-  class MetalDrawable* nextDrawable();
+        class MetalDrawable* nextDrawable();
 
-  void setPresentsWithTransaction(bool b);
-};
+        void setPresentsWithTransaction(bool b);
+        void setAllowsNextDrawableTimeout(bool b);
+        void setNeedsDisplayOnBoundsChange(bool b);
+        void setAutoresizingMask(NS::UInteger mask);
+    };
 }  // namespace CA
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 _CA_INLINE CA::MetalLayer* CA::MetalLayer::layer() {
-  return Object::sendMessage<CA::MetalLayer*>(_CA_PRIVATE_CLS(CAMetalLayer),
-                                              _CA_PRIVATE_SEL(layer));
+    return Object::sendMessage<CA::MetalLayer*>(_CA_PRIVATE_CLS(CAMetalLayer),
+                                                _CA_PRIVATE_SEL(layer));
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE MTL::Device* CA::MetalLayer::device() const {
-  return Object::sendMessage<MTL::Device*>(this, _CA_PRIVATE_SEL(device));
+    return Object::sendMessage<MTL::Device*>(this, _CA_PRIVATE_SEL(device));
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE void CA::MetalLayer::setDevice(MTL::Device* device) {
-  return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setDevice_), device);
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setDevice_), device);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE MTL::PixelFormat CA::MetalLayer::pixelFormat() const {
-  return Object::sendMessage<MTL::PixelFormat>(this,
-                                               _CA_PRIVATE_SEL(pixelFormat));
+    return Object::sendMessage<MTL::PixelFormat>(this, _CA_PRIVATE_SEL(pixelFormat));
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE void CA::MetalLayer::setPixelFormat(MTL::PixelFormat pixelFormat) {
-  return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setPixelFormat_),
-                                   pixelFormat);
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setPixelFormat_), pixelFormat);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE bool CA::MetalLayer::framebufferOnly() const {
-  return Object::sendMessage<bool>(this, _CA_PRIVATE_SEL(framebufferOnly));
+    return Object::sendMessage<bool>(this, _CA_PRIVATE_SEL(framebufferOnly));
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE void CA::MetalLayer::setFramebufferOnly(bool framebufferOnly) {
-  return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setFramebufferOnly_),
-                                   framebufferOnly);
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setFramebufferOnly_), framebufferOnly);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE CGSize CA::MetalLayer::drawableSize() const {
-  return Object::sendMessage<CGSize>(this, _CA_PRIVATE_SEL(drawableSize));
+    return Object::sendMessage<CGSize>(this, _CA_PRIVATE_SEL(drawableSize));
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE void CA::MetalLayer::setDrawableSize(CGSize drawableSize) {
-  return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setDrawableSize_),
-                                   drawableSize);
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setDrawableSize_), drawableSize);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE CA::MetalDrawable* CA::MetalLayer::nextDrawable() {
-  return Object::sendMessage<MetalDrawable*>(this,
-                                             _CA_PRIVATE_SEL(nextDrawable));
+    return Object::sendMessage<MetalDrawable*>(this, _CA_PRIVATE_SEL(nextDrawable));
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 _CA_INLINE void CA::MetalLayer::setPresentsWithTransaction(bool b) {
-  return Object::sendMessage<void>(
-    this, _CA_PRIVATE_SEL(setPresentsWithTransaction_), true);
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setPresentsWithTransaction_), true);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+_CA_INLINE void CA::MetalLayer::setAllowsNextDrawableTimeout(bool b) {
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setAllowsNextDrawableTimeout_), b);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+_CA_INLINE void CA::MetalLayer::setNeedsDisplayOnBoundsChange(bool b) {
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setNeedsDisplayOnBoundsChange_), b);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+_CA_INLINE void CA::MetalLayer::setAutoresizingMask(NS::UInteger mask) {
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setAutoresizingMask_), mask);
 }
