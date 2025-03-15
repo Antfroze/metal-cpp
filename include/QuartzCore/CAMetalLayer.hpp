@@ -23,6 +23,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #include <CoreGraphics/CGGeometry.h>
+#include "../Metal/MTLAutoResizingMask.hpp"
 #include "../Metal/MTLPixelFormat.hpp"
 
 #include "CADefines.hpp"
